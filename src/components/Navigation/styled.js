@@ -1,11 +1,17 @@
 import styled from "styled-components";
 
 export const NavigationContainer = styled.div`
-  height: 20vh;
+  height: 10%;
   display: flex;
   justify-content: space-between;
-  position: relative;
+  position: sticky;
+  background: ${(props) => (props.isHome ? "inherit" : "white")};
+  box-shadow: ${(props) => (props.isHome ? "inherit" : "-3px -3px 8px 0px black")};
   z-index: 2;
+  #logo {
+    height: 100%;
+    width: 5em
+  }
 `;
 
 export const NavLinks = styled.ul`
@@ -21,17 +27,18 @@ export const ListItem = styled.li`
   line-height: 2rem;
   margin: 10px;
   padding: 5px;
-  &#start-learning {
+  &#start-teaching {
     display: none; /* This is how it looks on mobile */
   }
 
   @media (min-width: 600px) {
-    &#start-learning {
+    &#start-teaching {
       display: block; /* This is how it looks on desktop */
     }
   }
 `;
 
 export const Logo = styled.img`
-  height: 100%;
+  margin: 10px;
+  height: 75%;
 `;

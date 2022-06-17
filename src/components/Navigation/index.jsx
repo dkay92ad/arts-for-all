@@ -1,10 +1,15 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import { Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import { routes } from "common/config";
 import { NavigationContainer, NavLinks, ListItem, Logo } from "./styled";
-import TemporaryDrawer from "./NavigationDrawer";
+import NavigationDrawer from "./NavigationDrawer";
+
 function NavList() {
+  const location = useLocation();
+  const isHome = location.pathname === routes.HOME;
   // This styling will be applied to a <NavLink> when the
   // route that it links to is currently selected.
   let activeStyle = {
@@ -12,14 +17,14 @@ function NavList() {
   };
 
   let activeClassName = "underline";
-
   return (
-    <NavigationContainer>
+    <NavigationContainer isHome={isHome}>
       <NavLink
-        to="/"
+        to={routes.HOME}
         className={({ isActive }) => (isActive ? activeClassName : undefined)}
+        id="logo"
       >
-        <Logo src="/images/afa_logo.png" />
+        <Logo src="/images/afa_logo.jpg" />
       </NavLink>
       <nav>
         <NavLinks>
@@ -43,20 +48,20 @@ function NavList() {
               )}
             </NavLink>
           </ListItem> */}
-          <ListItem id="start-learning">
+          {isHome && <ListItem id={routes.TEACHER}>
             <NavLink
-              to="/start-learning"
+              to={`${routes.HOME}${routes.TEACHER}`}
             >
               <Button
-                variant="contained"
+                variant="outlined"
                 endIcon={<SendIcon />}
               >
-                Start Learning
+                Start Teaching
               </Button>
             </NavLink>
-          </ListItem>
+          </ListItem>}
           <ListItem>
-            <TemporaryDrawer />
+            <NavigationDrawer />
           </ListItem>
         </NavLinks>
       </nav>

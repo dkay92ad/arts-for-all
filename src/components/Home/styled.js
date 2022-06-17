@@ -9,15 +9,11 @@ export const HomeContainer = styled.div`
   position: relative;
   z-index: 1;
   background-image: linear-gradient(-180deg, #8f592c, gray);
-  /* &:hover{
-    background: black;
-    opacity: 1;
-  } */
 `;
 
 export const Cover = styled.img`
   position: fixed;
-  height: 99vh;
+  height: 95vh;
   opacity: 0.5;
   mix-blend-mode: overlay;
 `;

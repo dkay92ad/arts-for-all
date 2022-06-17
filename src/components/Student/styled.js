@@ -1,6 +1,6 @@
 import Styled from 'styled-components';
 
-export const StartLearningContainer = Styled.div`
+export const StudentContainer = Styled.div`
     width: 85%;
     margin: auto;
 `;
