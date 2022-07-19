@@ -1,20 +1,11 @@
-import Stepper from "common/components/Stepper";
-// import StudentInput from "./StudentInput";
+import Stepper from "../Stepper";
 import { ContentContainer } from "common/components/StyledComponents";
-import { StudentContainer } from "./styled";
-const questions = [
-  { label: "Choose Art" },
-  { label: "Personal Details" },
-  { label: "Preview and Confirm" },
-  { label: "Pay" },
-];
+import { steps } from "common/config";
 
 function Student() {
   return (
     <ContentContainer>
-      <StudentContainer>
-        <Stepper questions={{ steps: questions }} />
-      </StudentContainer>
+      <Stepper steps={steps} />
     </ContentContainer>
   );
 }

@@ -35,7 +35,6 @@ export const CoverContentHeader = styled.h3`
   @media (min-width: 600px) {
     & {
       font-size: 3rem;
-      text-shadow: #000 1px 2px 5px;
     }
   }
 `;
