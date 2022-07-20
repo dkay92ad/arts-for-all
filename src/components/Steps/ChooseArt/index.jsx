@@ -6,7 +6,7 @@ import { FETCH_OPTIONS, CHANGE_SELECTION } from "./constants";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import uiText from 'common/config/uiText';
+import uiText from "common/config/uiText";
 
 const ChooseArt = (props) => {
   const isDesktop = useMediaQuery("(min-width:600px)");
