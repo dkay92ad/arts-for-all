@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const HomeContainer = styled.div`
   height: 100%;
   display: flex;
+  gap: 1em;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -20,7 +21,7 @@ export const Cover = styled.img`
 
 export const CoverContentBox = styled.div`
   width: 100%;
-  height: 300px;
+  height: 250px;
   @media (min-width: 600px) {
     & {
       width: 50%;

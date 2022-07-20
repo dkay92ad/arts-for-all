@@ -6,7 +6,7 @@ import { applyMiddleware, compose, createStore } from "redux";
 import { mapValues } from "lodash-es";
 import { createLogger } from "redux-logger";
 import App from "./App";
-import rootReducer from "./reducer";
+import rootReducer from "./rootReducer";
 
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

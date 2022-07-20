@@ -56,7 +56,7 @@ export default function MultipleSelectCheckmarks({
           value={itemName}
           onChange={handleChange}
           input={<OutlinedInput label={listLabel} />}
-          renderValue={(selected) => selected.join(", ")}
+          renderValue={(selected) => multiple ? selected.join(", ") : selected}
           MenuProps={MenuProps}
         >
           {list.map((name) => (

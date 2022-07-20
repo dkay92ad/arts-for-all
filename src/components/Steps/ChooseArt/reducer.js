@@ -15,7 +15,7 @@ const initialState = fromJS({
   },
   filterData: {
     artClasses: [],
-    artLevel: [],
+    artLevel: artLevel[0],
     artClassLocation: [],
     artClassDays: [],
     artClassTime: "14:00"

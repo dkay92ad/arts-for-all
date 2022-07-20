@@ -6,6 +6,7 @@ import { FETCH_OPTIONS, CHANGE_SELECTION } from "./constants";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import uiText from 'common/config/uiText';
 
 const ChooseArt = (props) => {
   const isDesktop = useMediaQuery("(min-width:600px)");
@@ -17,7 +18,9 @@ const ChooseArt = (props) => {
   }, []);
 
   function onChange(name, value) {
-    dispatch({ type: CHANGE_SELECTION, payload: { name, value } });
+    if (value) {
+      dispatch({ type: CHANGE_SELECTION, payload: { name, value } });
+    }
   }
 
   return (
@@ -25,42 +28,47 @@ const ChooseArt = (props) => {
       <Dropdown
         list={chooseArt.filterOptions.artClasses || []}
         selectedItems={chooseArt.filterData.artClasses || []}
-        listName="artClasses"
-        listLabel="Art *"
-        helperText="Select one or more art you're interested to learn."
         onChange={onChange}
+        listName="artClasses"
+        listLabel={uiText.ART_CLASSES}
+        helperText="Select one or more art classes you're interested in."
       />
       <Dropdown
         list={chooseArt.filterOptions.artLevel || []}
-        selectedItems={chooseArt.filterData.artLevel || []}
-        listName="artLevel"
-        listLabel="Art Level"
-        helperText="Select the skill level you think you're at currently."
+        selectedItems={chooseArt.filterData.artLevel || ""}
         onChange={onChange}
+        listName="artLevel"
+        listLabel={uiText.ART_LEVEL}
+        helperText="Select a skill level you're at currently."
+        multiple={false}
       />
       <Dropdown
         list={chooseArt.filterOptions.artClassLocation || []}
         selectedItems={chooseArt.filterData.artClassLocation || []}
-        listName="artClassLocation"
-        listLabel="Class Location"
-        helperText="Select the location you would like to learn at."
         onChange={onChange}
+        listName="artClassLocation"
+        listLabel={uiText.ART_CLASS_LOCATION}
+        helperText="Select your preferred class locations."
       />
       <DayTimeContainer>
         <Dropdown
           list={chooseArt.filterOptions.artClassDays || []}
           selectedItems={chooseArt.filterData.artClassDays || []}
-          listName="artClassDays"
-          listLabel="Select Days"
-          // helperText="Select your preferred days of the week."
           onChange={onChange}
+          listName="artClassDays"
+          listLabel={uiText.ART_CLASS_DAYS}
         />
         <TextField
           value={chooseArt.filterData.artClassTime || ""}
+          onChange={(event) => onChange(event.target.name, event.target.value)}
           type="time"
           name="artClassTime"
-          onChange={(event) => onChange(event.target.name, event.target.value)}
           id="time"
+          placeholder={uiText.ART_CLASS_TIME}
+          inputProps={{
+            min: "08:00",
+            max: "20:00",
+          }}
         />
         {isDesktop && (
           <Typography
@@ -69,7 +77,7 @@ const ChooseArt = (props) => {
             display="block"
             style={{ alignSelf: "center", marginLeft: "1rem" }}
           >
-            Select your preferred days & times of the week for class
+            Select your preferred day(s) & time of the week for the classes.
           </Typography>
         )}
       </DayTimeContainer>

@@ -11,7 +11,9 @@ const PersonalDetails = () => {
   const dispatch = useDispatch();
 
   function onChange(name, value) {
-    dispatch({ type: CHANGE_SELECTION, payload: { name, value } });
+    if(value){
+      dispatch({ type: CHANGE_SELECTION, payload: { name, value } });
+    }
   }
 
   return (

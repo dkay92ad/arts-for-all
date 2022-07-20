@@ -35,3 +35,8 @@ export const artClassDays = [
   "Saturday",
   "Sunday",
 ];
+export const STUDENT_PAYMENT_INFO = `In order to verify the identity and send a list of matching classes and
+instructors, card payment of $1.50 will be charged.`;
+
+export const TEACHER_PAYMENT_INFO = `Annual membership fee - $60. 
+Membership includes cost of background check, as well as opportunities for professional development and participation in art and music shows throughout the year.`;

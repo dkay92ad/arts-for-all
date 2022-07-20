@@ -44,6 +44,7 @@ export default function MaterialUIPickers({
           label={label}
           type="date"
           // defaultValue="2017-05-24"
+          format={"DD/MM/YYYY"}
           sx={{ width: isDesktop ? "250px" : "92%", margin: "0 0.5em" }}
           InputLabelProps={{
             shrink: true,
