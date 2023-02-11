@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -7,10 +8,16 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import StepsComponent from "../Steps";
 
-export default function HorizontalNonLinearStepper({ steps }) {
+const HorizontalNonLinearStepper = ({ steps }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
-
+  const chooseArtHasError = useSelector((state) => state.chooseArt.hasError);
+  const personalDetailsHasError = useSelector(
+    (state) => state.personalDetails.hasError
+  );
+  const hasError =
+    (chooseArtHasError && activeStep === 0) ||
+    (personalDetailsHasError && activeStep === 1);
   const totalSteps = () => {
     return steps.length;
   };
@@ -28,6 +35,7 @@ export default function HorizontalNonLinearStepper({ steps }) {
   };
 
   const handleNext = () => {
+    if (hasError) return;
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed,
@@ -46,6 +54,7 @@ export default function HorizontalNonLinearStepper({ steps }) {
   };
 
   const handleComplete = () => {
+    if (hasError) return;
     const newCompleted = completed;
     newCompleted[activeStep] = true;
     setCompleted(newCompleted);
@@ -100,9 +109,11 @@ export default function HorizontalNonLinearStepper({ steps }) {
                 Back
               </Button>
               <Box sx={{ flex: "1 1 auto" }} />
-              <Button onClick={handleNext} sx={{ mr: 1 }}>
-                Next
-              </Button>
+              {activeStep !== steps.length - 1 && (
+                <Button onClick={handleNext} sx={{ mr: 1 }} disabled={hasError}>
+                  Next
+                </Button>
+              )}
               {activeStep !== steps.length &&
                 (completed[activeStep] ? (
                   <Typography
@@ -112,11 +123,13 @@ export default function HorizontalNonLinearStepper({ steps }) {
                     Step {activeStep + 1} already completed
                   </Typography>
                 ) : (
-                  <Button onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1
-                      ? "Finish"
-                      : "Complete Step"}
-                  </Button>
+                  activeStep !== steps.length - 1 && (
+                    <Button onClick={handleComplete} disabled={hasError}>
+                      {completedSteps() === totalSteps() - 1
+                        ? "Finish"
+                        : "Complete Step"}
+                    </Button>
+                  )
                 ))}
             </Box>
           </>
@@ -124,4 +137,6 @@ export default function HorizontalNonLinearStepper({ steps }) {
       </div>
     </Box>
   );
-}
+};
+
+export default React.memo(HorizontalNonLinearStepper);

@@ -1,27 +1,35 @@
-import { CHANGE_SELECTION } from "./constants";
-import { fromJS } from "immutable";
+import { CHANGE_SELECTION, SET_HAS_ERROR } from "./constants";
+import { set } from "lodash-es";
+import { produce } from "immer";
 
-const initialState = fromJS({
+const initialState = {
   data: {
     firstName: "",
     lastName: "",
     dob: "",
     emailId: "",
-    mailingAddress: "",
+    mailingAddress: {
+      houseNumber: "",
+      street: "",
+      city: "",
+      country: "",
+      postalCode: "",
+    },
   },
-});
+  hasError: true,
+};
 
-function reducer(state = initialState, action) {
+function reducer(state, action) {
   switch (action.type) {
     case CHANGE_SELECTION:
       const { name, value } = action.payload;
-      return state.mergeIn(["data"], {
-        ...state.data,
-        [name]: value,
-      });
-    default:
-      return state;
+      set(state, `data.${name}`, value);
+      break;
+    case SET_HAS_ERROR:
+      const { hasError } = action.payload;
+      state.hasError = hasError;
+      break;
   }
 }
 
-export default reducer;
+export default produce(reducer, initialState);

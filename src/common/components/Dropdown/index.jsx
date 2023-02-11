@@ -7,7 +7,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import { Typography } from "@mui/material";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -28,10 +28,11 @@ export default function MultipleSelectCheckmarks({
   width = 250,
   onChange,
   helperText = "",
-  multiple = true
+  multiple = true,
+  hasError = false
 }) {
   const [itemName, setItemName] = React.useState(selectedItems);
-  const isDesktop = useMediaQuery('(min-width:600px)');
+  const isDesktop = useMediaQuery("(min-width:600px)");
 
   const handleChange = (event) => {
     const {
@@ -41,12 +42,12 @@ export default function MultipleSelectCheckmarks({
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
-    onChange(name, value);
+    onChange(event);
   };
 
   return (
     <div style={{ display: "flex" }}>
-      <FormControl sx={{ m: 1, width, display: "flex" }}>
+      <FormControl sx={{ m: 1, width, display: "flex" }} error={hasError}>
         <InputLabel id="demo-multiple-checkbox-label">{listLabel}</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
@@ -56,7 +57,9 @@ export default function MultipleSelectCheckmarks({
           value={itemName}
           onChange={handleChange}
           input={<OutlinedInput label={listLabel} />}
-          renderValue={(selected) => multiple ? selected.join(", ") : selected}
+          renderValue={(selected) =>
+            multiple ? selected.join(", ") : selected
+          }
           MenuProps={MenuProps}
         >
           {list.map((name) => (
@@ -67,14 +70,16 @@ export default function MultipleSelectCheckmarks({
           ))}
         </Select>
       </FormControl>
-      {isDesktop && <Typography
-        variant="subtitle2"
-        gutterBottom
-        display="block"
-        style={{alignSelf: "center", marginLeft: "0.5rem"}}
-      >
-        {helperText}
-      </Typography>}
+      {isDesktop && (
+        <Typography
+          variant="subtitle2"
+          gutterBottom
+          display="block"
+          style={{ alignSelf: "center", marginLeft: "0.5rem" }}
+        >
+          {helperText}
+        </Typography>
+      )}
     </div>
   );
 }

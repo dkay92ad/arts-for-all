@@ -1,12 +1,13 @@
-import { FETCH_OPTIONS, CHANGE_SELECTION } from "./constants";
-import { fromJS } from "immutable";
+import { FETCH_OPTIONS, CHANGE_SELECTION, SET_HAS_ERROR } from "./constants";
+import { set, get, isEmpty } from "lodash-es";
+import { produce } from "immer";
 import {
   artClasses,
   artLevel,
   artClassLocation,
   artClassDays,
 } from "../config";
-const initialState = fromJS({
+const initialState = {
   filterOptions: {
     artClasses,
     artLevel,
@@ -18,23 +19,24 @@ const initialState = fromJS({
     artLevel: artLevel[0],
     artClassLocation: [],
     artClassDays: [],
-    artClassTime: "14:00"
+    artClassTime: "14:00",
   },
-});
+  hasError: true,
+};
 
-function reducer(state = initialState, action) {
+function reducer(state, action) {
   switch (action.type) {
     case FETCH_OPTIONS:
-      return state.merge(initialState);
-    case CHANGE_SELECTION:
-      const {name, value} = action.payload;
-      return state.mergeIn(['filterData'], {
-        ...state.filterData,
-        [name]: value
-      });
-    default:
       return state;
+    case CHANGE_SELECTION:
+      const { name, value } = action.payload;
+      set(state, name, value);
+      break;
+    case SET_HAS_ERROR:
+      const { hasError } = action.payload;
+      state.hasError = hasError;
+      break;
   }
 }
 
-export default reducer;
+export default produce(reducer, initialState);

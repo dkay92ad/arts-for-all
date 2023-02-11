@@ -5,7 +5,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileTimePicker } from "@mui/x-date-pickers";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 
-// background-color: #dee7ff;
 const theme = createTheme({
   components: {
     MuiMobileTimePicker: {

@@ -16,7 +16,6 @@ const theme = createTheme({
           width: '4em',
         },
         checked: {
-        //   color: 'yellow',
           background: 'green',
         },
       },
