@@ -1,6 +1,6 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { routes } from "common/config";
@@ -48,18 +48,20 @@ function NavList() {
               )}
             </NavLink>
           </ListItem> */}
-          {isHome && <ListItem id={routes.TEACHER}>
-            <NavLink
-              to={`${routes.HOME}${routes.TEACHER}`}
-            >
-              <Button
-                variant="outlined"
-                endIcon={<SendIcon />}
-              >
-                Start Teaching
-              </Button>
-            </NavLink>
-          </ListItem>}
+          {isHome && (
+            <ListItem id={routes.STUDENT}>
+              <NavLink to={`${routes.HOME}${routes.STUDENT}`}>
+                <Button variant="text">Student</Button>
+              </NavLink>
+            </ListItem>
+          )}
+          {isHome && (
+            <ListItem id={routes.TEACHER}>
+              <NavLink to={`${routes.HOME}${routes.TEACHER}`}>
+                <Button variant="text">Teacher</Button>
+              </NavLink>
+            </ListItem>
+          )}
           <ListItem>
             <NavigationDrawer />
           </ListItem>

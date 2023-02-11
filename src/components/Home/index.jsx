@@ -29,6 +29,11 @@ function Home() {
             Start Learning
           </Button>
         </NavLink>
+        <NavLink to={`${routes.HOME}${routes.TEACHER}`}>
+          <Button variant="contained" endIcon={<SendIcon />}>
+            Start Teaching
+          </Button>
+        </NavLink>
         {/* <Outlet /> */}
       </HomeContainer>
     </ContentContainer>

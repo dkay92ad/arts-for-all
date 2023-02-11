@@ -27,12 +27,12 @@ export const ListItem = styled.li`
   line-height: 2rem;
   margin: 10px;
   padding: 5px;
-  &#start-teaching {
+  &#start-teaching, &#start-learning {
     display: none; /* This is how it looks on mobile */
   }
 
   @media (min-width: 600px) {
-    &#start-teaching {
+    &#start-teaching, &#start-learning {
       display: block; /* This is how it looks on desktop */
     }
   }

@@ -11,7 +11,7 @@ const ComingSoon = () => {
         style={{ height: "75%", width: "100%" }}
       />
       <h2>Coming Soon.</h2>
-      <p>Something awesome is in the work.</p>
+      <p>Something awesome is in the works.</p>
       <NavLink to="/">
         <Button variant="text">Go back to home page</Button>
       </NavLink>

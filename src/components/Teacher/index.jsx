@@ -2,7 +2,7 @@ import Stepper from "../Stepper";
 import { ContentContainer } from "common/components/StyledComponents";
 import { steps } from "common/config";
 
-function Student() {
+function Teacher() {
   return (
     <ContentContainer>
       <Stepper steps={steps} />
@@ -10,4 +10,4 @@ function Student() {
   );
 }
 
-export default Student;
+export default Teacher;
